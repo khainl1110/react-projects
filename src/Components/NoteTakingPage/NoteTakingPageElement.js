@@ -6,20 +6,20 @@ var randomWords = require('random-words')
 let notes = [
 
 ]
-export default function Index() {
+export default function Index({title, body}) {
     // api https://mui.com/material-ui/react-card/
     return (
         <React.Fragment>
             <CardContent>
                 <Typography>
-                    This is a text
+                    {title}
                 </Typography>
                 <TextField
                     id="outlined-multiline-flexible"
                     label="Multiline"
                     multiline
                     maxRows={4}
-                    defaultValue = {randomWords({exactly: 100, join: ' '})}
+                    defaultValue = {body}
                     disabled
                 />
             </CardContent>
