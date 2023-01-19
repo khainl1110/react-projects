@@ -2,11 +2,8 @@ import { CardContent, Typography } from "@mui/material";
 import React from "react";
 import TextField from "@mui/material/TextField";
 
-var randomWords = require('random-words')
-let notes = [
-
-]
-export default function Index({title, body}) {
+export default function Index({note, onClickFunc}) {
+    let {title, body, key} = note
     // api https://mui.com/material-ui/react-card/
     return (
         <React.Fragment>
@@ -21,6 +18,7 @@ export default function Index({title, body}) {
                     maxRows={4}
                     defaultValue = {body}
                     disabled
+                    onClick = {() => onClickFunc(note)}
                 />
             </CardContent>
         </React.Fragment>
