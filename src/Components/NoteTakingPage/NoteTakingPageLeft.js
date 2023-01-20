@@ -10,7 +10,6 @@ export default function Index({currentNote}) {
     let [body, setBody] = useState()
 
     useEffect(() => {
-        
         setTitle(currentNote.title)
         setBody(currentNote.body)
     }, [currentNote])
@@ -22,9 +21,9 @@ export default function Index({currentNote}) {
             margin: '2%'
             }}>
             <Stack>
-                <TextField defaultValue = {title} multiline/>
+                <TextField defaultValue = {title} multiline onChange={(e) => setTitle(e.target.value)}/>
                
-               <TextField defaultValue = {body} multiline />
+               <TextField defaultValue = {body} multiline onChange={(e) => setBody(e.target.value)}/>
             </Stack>
 
             <Button></Button>

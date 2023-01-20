@@ -25,8 +25,30 @@ export default function Index() {
     let addNewNote = () => {
         let newNotes = [...notes]
         let newBody = randomWords({exactly: 100, join: ' '})
-        newNotes.push({title: "New note from index", body: newBody, key: random(10)})
+        let newTask = {title: "New note from index", body: newBody, key: random(10)}
+ 
+        setNotes([...newNotes, newTask])
+    }
+
+    let deleteNote = (noteId) => {
+        
+        // alert("Note id to delete " + noteId)
+        let newNotes = [...notes]
+        // let idString = ""
+        // newNotes.forEach(note => {
+        //     idString += note.key + " | "
+        // });
+        //alert("Id string before delete " + idString)
+        newNotes = notes.filter(item => item.key !== noteId)
+
+        //idString = ""
+        // newNotes.forEach(note => {
+        //     idString += note.key + " | "
+        // })
+        // alert("Id string after delete " + idString)
         setNotes(newNotes)
+
+
     }
 
     return(
@@ -59,6 +81,7 @@ export default function Index() {
                             notes.map(note => <NoteTakingPageElement 
                                     note = {note}
                                     onClickFunc = {setCurrentNote}
+                                    onDeleteFunc = {deleteNote}
                                     />
                                     )
                         }
