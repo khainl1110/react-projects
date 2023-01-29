@@ -1,16 +1,23 @@
 import { useState } from "react";
 
+export function replaceCamelWithSpaces(colorName) {
+    return colorName.replace(/\B([A-Z])\B/g, ' $1');
+}
+
 export default function Button() {
 
-    let [buttonColor, setButtonColor] = useState('red');
+    //let [buttonColorText, setButtonColorText] = useState('blue');
     let [disabled, setDisabled] = useState(false);
 
-    let newButtonColor = buttonColor === 'red' ? 'blue' : 'red';
+    //let newButtonColor = disabled ? 'gray' : buttonColorText === 'red' ? 'blue' : 'red';
 
-    
-    let onClickButton = () => {
-        setButtonColor(buttonColor === 'red' ? 'blue' : 'red')
-    }
+    let [buttonColor, setButtonColor] = useState('MediumVioletRed')
+
+    let newButtonColor = buttonColor === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed';
+
+    // let onClickButton = () => {
+    //     setButtonColorText(buttonColorText === 'red' ? 'blue' : 'red')
+    // }
 
     let setDisabledToggle = () => {
         setDisabled(!disabled)
@@ -19,14 +26,16 @@ export default function Button() {
     return(
         <div>
             <button 
-                style={{backgroundColor: buttonColor}} 
-                onClick = {onClickButton}
+                style={{backgroundColor: disabled ? 'gray' : buttonColor}} 
+                onClick = {() => setButtonColor(newButtonColor)}
                 disabled = {disabled}
-            >Change to {newButtonColor}</button>
+            >Change to {replaceCamelWithSpaces(newButtonColor)}</button>
             <input 
                 type = 'checkbox' 
                 onClick = {setDisabledToggle}
+                id="disable-button-checkbox"
             />
+            <label htmlFor="disable-button-checkbox">Disable button</label>
         </div>
     )
 }
