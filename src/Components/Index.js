@@ -5,7 +5,7 @@ import { AppBar, Button, Grid, makeStyles } from '@mui/material'
 import { Stack } from '@mui/system'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import ComponentsIndex from './ComponentsWithTest/ComponentsIndex'
-
+import TodoPage from './TodoPage/TodoPage';
 
 export default function Index() {
 
@@ -32,6 +32,12 @@ export default function Index() {
                                     React testing
                                 </Button>
                             </Link>
+
+                            <Link to = "/todo-page">
+                                <Button color = 'inherit'>
+                                    To do page
+                                </Button>
+                            </Link>
                         </Grid2>
                     </AppBar>
                 </div>
@@ -41,6 +47,7 @@ export default function Index() {
                         <Route exact path="/note" element = {<NoteTakingPageIndex />} />
                         <Route exact path = "/photo" element = {<PhotoProcessingIndex />} />
                         <Route exact path = "/react-testing" element = {<ComponentsIndex />} />
+                        <Route exact path = "/todo-page" element= {<TodoPage />} />
                     </Routes>  
                 </div>
             </Stack>
