@@ -1,9 +1,20 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 
 export default function Todo({name, completed, id, deleteTask, toggleTaskCompleted, editTask}) {
     
     const [isEditing, setEditing] = useState(false);
     const [newName, setNewName] = useState('');
+
+    const editFieldRef = useRef(null);
+    const editButtonRef = useRef(null);
+
+    useEffect(() => {
+      if (isEditing) {
+        editFieldRef.current.focus();
+      } else {
+        editButtonRef.current.focus();
+      }
+    }, [isEditing])
 
     function handleChange(e) {
         setNewName(e.target.value);
@@ -27,6 +38,7 @@ export default function Todo({name, completed, id, deleteTask, toggleTaskComplet
                 type="text" 
                 value = {newName} 
                 onChange={handleChange}
+                ref = {editFieldRef}
             />
           </div>
           <div className="btn-group">
@@ -59,7 +71,12 @@ export default function Todo({name, completed, id, deleteTask, toggleTaskComplet
             </label>
         </div>
         <div className="btn-group">
-            <button type="button" className="btn" onClick={() => setEditing(true)}>
+            <button 
+              type="button" 
+              className="btn" 
+              onClick={() => setEditing(true)}
+              ref = {editButtonRef}
+            >
                 Edit {isEditing} <span className="visually-hidden">{name}</span>
             </button>
 

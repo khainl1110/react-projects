@@ -51,22 +51,21 @@ export default function TodoPage() {
         setTasks(editedTaskList)
     }
 
-    const taskList = tasks.map((task) => (
-        <Todo 
-            id = {task.id} 
-            name = {task.name} 
-            completed = {task.completed} 
-            key = {task.id}
-            deleteTask = {deleteTask}
-            toggleTaskCompleted = {toggleTaskCompleted}
-            editTask = {editTask}
+    const taskList = tasks
+        .filter(FILTER_MAP[filter])
+        .map((task) => (
+        <Todo
+            id={task.id}
+            name={task.name}
+            completed={task.completed}
+            key={task.id}
+            toggleTaskCompleted={toggleTaskCompleted}
+            deleteTask={deleteTask}
+            editTask={editTask}
         />
-    ))
+        ));
 
-    const filterList = FILTER_NAMES.map((name) => (<FilterButton key = {name} name = {name} /> ))
-
-    const filterList1 = FILTER_NAMES.map((name) => (<FilterButton key = {name} name = {name} isPressed = {name=== filter} setFilter = {setFilter} />));
-    
+    const filterList = FILTER_NAMES.map((name) => (<FilterButton key = {name} name = {name} isPressed = {name=== filter} setFilter = {setFilter} />));
 
     const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
     const headingText = `${taskList.length}  ${tasksNoun} remaining`;
